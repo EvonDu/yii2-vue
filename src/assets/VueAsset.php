@@ -24,6 +24,6 @@ class VueAsset extends AssetBundle
         'position' => \yii\web\View::POS_HEAD
     ];
     public $depends = [
-        'vuelte\vue\assets\VueYiiAsset',
+        'yiivue\assets\VueYiiAsset',
     ];
 }
