@@ -84,10 +84,7 @@ function formSubmit(){
             for(var key in array){
                 var value = array[key];
                 if(typeof value === 'object' && value !== null){
-                    if(isArray)
-                        hash = hash.concat(getArrayHash(name+"["+key+"]",value));
-                    else
-                        hash = hash.concat(getArrayHash(name+"['"+key+"']",value));
+                    hash = hash.concat(getArrayHash(name+"["+key+"]",value));
                 }
                 else{
                     var item = {};
