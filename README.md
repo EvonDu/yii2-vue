@@ -12,7 +12,6 @@
 * 布尔型会被处理成字符串的1和0，目的是适配Yii的表单传值和处理
 * 变量转换使用`yiivue\Import::value()`（在视图层中使用）
     * 示例：`yiivue\Import::value($this, $model, "data");`
-    * 示例：`vuelte\lib\Import::value($this, $model, "data");`
     * 第一个参数为`yii\web\View`对象，即视图层的`$this`
     * 第二个参数是要转换PHP变量
     * 第三个参数为转换成JavaScript后变量的名称
@@ -23,7 +22,7 @@
     * 第一个参数为提交的JavaScript对象
     * 第二个参数为Yii中的模型名（用于迎合Yii的表单提交方式）
     * 示例执行后POST的数据为：`Demo[name]=test`
-    * 并且此种提交方式也支持Yii的CSRF认证
+    * 并且此种提交方式支持Yii的CSRF认证
 
 ## 编写Vue组件（PHP混编组件）
 #### 实现概述
@@ -38,7 +37,7 @@
 * 可以配置好GII后用模板生成CRUD，然后对照其中的_form文件查看（此为一个完整混编Vue组件）
 
 #### 组件例子
-* 示例组件（路径：backend/views/components/test.php）：
+* 示例组件（路径：app/views/components/test.php）：
 ```
 <!-- 组件样式 -->
 <style>
@@ -64,17 +63,16 @@
 * 使用方法（在Yii的视图层使用）：
  ```
  <?php
- yiivue\Import::component($this,'@backend/views/components/test');
+ yiivue\Import::component($this, '@app/views/components/test');
  ?>
  <div id="app">
      <test></test>
  </div>
  
  <script>
-     new Vue({
-         el:'#app',
-         data:{}
-     })
+     Vue.component('lte-content', {
+        template: '{{component-template}}'
+     });
  </script>
  ```
 
