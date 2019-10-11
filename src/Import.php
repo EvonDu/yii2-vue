@@ -3,6 +3,7 @@ namespace yiivue;
 
 use yii\web\View;
 use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 use yiivue\core\VueComponent;
 
 /**
@@ -40,6 +41,29 @@ class Import{
         }
         //输出到Http头部JS
         $view->registerJs("var $name = $dataStr;", View::POS_HEAD);
+    }
+
+    /**
+     * 导入JavaScript变量（从Yii的DataProvider中）
+     * @param View $view
+     * @param ActiveDataProvider $dataProvider
+     * @param $name
+     * @return string
+     */
+    static public function dataProvider(View $view, ActiveDataProvider $dataProvider, $name){
+        //获取数据
+        $data = [
+            "list"          => $dataProvider->getModels(),
+            "pagination"    => [
+                "page" => $dataProvider->pagination->getPage(),
+                "pageSize" => $dataProvider->pagination->getPageSize(),
+                "pageCount" => $dataProvider->pagination->getPageCount(),
+                "totalCount" => $dataProvider->pagination->totalCount
+            ]
+        ];
+
+        //调用JavaScript变量导入函数
+        return self::value($view, $data, $name);
     }
 
     /**
