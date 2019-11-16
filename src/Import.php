@@ -58,7 +58,7 @@ class Import{
                 "page" => $dataProvider->pagination->getPage(),
                 "pageSize" => $dataProvider->pagination->getPageSize(),
                 "pageCount" => $dataProvider->pagination->getPageCount(),
-                "totalCount" => $dataProvider->pagination->totalCount
+                "totalCount" => $dataProvider->pagination->getPageCount() * $dataProvider->pagination->getPageSize() + $dataProvider->getCount()
             ]
         ];
 
