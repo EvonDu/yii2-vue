@@ -55,10 +55,10 @@ class Import{
         $data = [
             "list"          => $dataProvider->getModels(),
             "pagination"    => [
-                "page" => $dataProvider->pagination->getPage(),
-                "pageSize" => $dataProvider->pagination->getPageSize(),
-                "pageCount" => $dataProvider->pagination->getPageCount(),
-                "totalCount" => $dataProvider->pagination->getPageCount() * $dataProvider->pagination->getPageSize() + $dataProvider->getCount()
+                "page"          => $dataProvider->pagination->page + 1,
+                "pageSize"      => $dataProvider->pagination->pageSize,
+                "pageCount"     => ceil($dataProvider->pagination->totalCount / $dataProvider->pagination->pageSize),
+                "totalCount"    => $dataProvider->pagination->totalCount
             ]
         ];
 
