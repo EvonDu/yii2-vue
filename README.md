@@ -6,6 +6,9 @@
 ## 安装方法
 `composer require evondu/yii2-vue`
 
+## 项目说明
+YII2框架本身视图层组件(Widget)是以混编组件的形式设计，因此页面会被分割到多个文件中并且难以对JavaScript的分布做出限制，而Vue恰恰要求应用部分不能存在JavaScript，所以Vue难以直接在YII中应用起来，而本依赖就是用解决这个。其提供了一组导入辅助函数对个各文件中的JavaScript、Style进行压缩与分离，从而让Vue能在Yii项目中使用起来。
+
 ## Yii与Vue结合使用
 #### 变量转化
 * 本库中提供将PHP变量转化成JavaScript变量的辅助函数，变量转化后可以便于Vue对其进行操作
