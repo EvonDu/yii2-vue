@@ -2,7 +2,6 @@ function formSubmit(){
     //成员属性
     var method = 'post';
     var action = '';
-    var formName = '';
     var csrfEnable = true;
     var csrfParam = '_csrf-backend';
     var csrfToken = '';
@@ -11,9 +10,6 @@ function formSubmit(){
     };
     this.setAction = function(value){
         action = value;
-    };
-    this.setFormName = function(value){
-        formName = value;
     };
     this.setCsrfEnable = function(value){
         csrfEnable = value ? true : false;
@@ -24,14 +20,26 @@ function formSubmit(){
     this.setCsrfToken = function(value){
         csrfToken = value;
     };
+    this.addDataModelName = function(data, modelName){
+        //判断modelName是否为空
+        if(!modelName)
+            return data;
+        //遍历处理数据
+        for(var key in data){
+            var name = modelName+"["+key+"]";
+            var value = data[key];
+            delete data[key];
+            data[name] = value;
+        };
+    };
     //接口方法
     this.submit = function(data){
         //创建表单元素
         var form = document.createElement("form");
         for(var key in data){
             //获取name和value
+            var name = key;
             var value = data[key];
-            var name = formName ? formName+"["+key+"]" : key;
             //过滤null
             if(value === null)
                 continue;

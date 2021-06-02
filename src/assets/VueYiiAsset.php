@@ -42,11 +42,11 @@ class VueYiiAsset extends AssetBundle {
         //submit form js
         $js[] = "\n";
         $js[] = 'Vue.prototype.$yii = Vue.prototype.$yii || {};';
-        $js[] = 'Vue.prototype.$yii.submit=function(data,formName,method,action){';
+        $js[] = 'Vue.prototype.$yii.submit=function(data,modelName,method,action){';
         $js[] = "var form = new formSubmit();";
         $js[] = "form.setAction(action || '');";
         $js[] = "form.setMethod(method || 'post');";
-        $js[] = "form.setFormName(formName);";
+        $js[] = "form.addDataModelName(data, modelName);";
         //post handle
         $js[] = "if(method && method.toLowerCase() === 'get') {";
         $js[] = "form.setCsrfEnable(false);";
